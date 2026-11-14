@@ -1,0 +1,35 @@
+name: Copy mainnet site assets
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/copy-mainnet-assets.yml'
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination
+        uses: actions/checkout@v4
+        with:
+          path: destination
+          persist-credentials: true
+      - name: Checkout existing public KMON site
+        uses: actions/checkout@v4
+        with:
+          repository: jamieahn72/jamieahn72.github.io
+          ref: main
+          path: source
+          persist-credentials: false
+      - name: Copy public site files, excluding testnet and backups
+        run: |
+          rsync -a --exclude='.git/' --exclude='.github/' --exclude='backups/' --exclude='sandbox.html' --exclude='CNAME' source/ destination/
+          cd destination
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Copy KMON mainnet pages and assets from existing public site"
+            git push
+          fi
