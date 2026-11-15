@@ -638,14 +638,14 @@ section { padding:30px 20px; }
 /* Kmon 세계관 상세페이지 안내 버튼: 기존 배너 위에 추가 */
 .world-banner { position:relative; }
 .world-detail-button {
-  position:absolute; right:clamp(12px,3%,28px); bottom:clamp(12px,5%,24px);
-  z-index:2; display:inline-flex; align-items:center; gap:8px;
-  padding:11px 17px; border:2px solid #E58A32;
-  border-radius:999px; background:#FFFDF8; color:#202B4B;
-  font-family:inherit; font-size:clamp(11px,1.7vw,14px); font-weight:700;
+  position:absolute; left:60.8%; right:4%; width:auto; max-width:none; bottom:clamp(12px,5%,24px);
+  z-index:2; display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:9px 5px; border:2px solid #E58A32;
+  border-radius:9px; background:var(--orange); color:#fff;
+  font-family:inherit; font-size:clamp(12px,2.3vw,18px); font-weight:800; white-space:nowrap;
   box-shadow:0 4px 14px rgba(0,0,0,.22); cursor:pointer;
 }
-.world-detail-button:hover { background:#F7F2E9; }
+.world-detail-button:hover { background:#d77c24; }
 .world-detail-button:focus-visible { outline:3px solid #E58A32; outline-offset:3px; }
 
 .bestiary-toolbar { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid rgba(32,43,75,.12); }
@@ -1022,7 +1022,7 @@ if (/Android/i.test(navigator.userAgent) &&
 <main id="home-page">
   <section class="world-banner" id="world">
     <img src="kmon-world.webp" alt="Kmon의 세계">
-    <button class="world-detail-button" type="button" onclick="window.location.href='kmon-world-story.html'">Kmon의 세계 알아보기 <span aria-hidden="true">→</span></button>
+    <button class="world-detail-button" type="button" onclick="window.location.href='kmon-world-story.html'">Kmon 탐험하기 <span aria-hidden="true">→</span></button>
   </section>
   <section id="bestiary">
     <div class="bestiary-heading">
@@ -1875,7 +1875,7 @@ function setLanguage(language) {
 
   const worldButton = document.querySelector(".world-detail-button");
   if (worldButton) {
-    const worldLabels = {ko:"Kmon의 세계 알아보기",en:"Explore Kmon's World",zh:"探索Kmon的世界",ja:"Kmonの世界を知る",vi:"Khám phá thế giới Kmon"};
+    const worldLabels = {ko:"Kmon 탐험하기",en:"Explore Kmon",zh:"探索 Kmon",ja:"Kmonを探検",vi:"Khám phá Kmon"};
     worldButton.textContent = worldLabels[language] + " →";
   }
 
