@@ -96,7 +96,7 @@
 - 캐릭터 이미지, 장면 배경 및 능력 연출은 개별 카드 설정을 논의해 결정한다. 고유 심볼은 동일 캐릭터의 네 등급에 동일하게 적용한다.
 - 실제 제작 시 원본 파일을 직접 확인하며, 원본 없이 외형을 추정해 대체하지 않는다.
 
-## 5. 현재 등록된 디지털 카드 — 총 16장
+## 5. 현재 등록된 디지털 카드 — 총 20장
 
 | 캐릭터 | 등급 | 카드 파일 |
 |---|---|---|
@@ -105,19 +105,27 @@
 | 달걀귀신 (Egg ghost) | NORMAL / RARE / EPIC / LEGEND | `egg_normal_thumbnail_1.webp`, `egg_rare_thumbnail_1.webp`, `egg_epic_thumbnail_1.webp`, `egg_legend_thumbnail_1.webp` |
 | 덤부 (Dumboo) | NORMAL / RARE / EPIC / LEGEND | `dumboo_normal_thumbnail_1.png`, `dumboo_rare_thumbnail_1.png`, `dumboo_epic_thumbnail_1.png`, `dumboo_legend_thumbnail_1.png` |
 
+| 물귀신 (Water Ghost) | NORMAL / RARE / EPIC / LEGEND | `water_normal_thumbnail_1.png`, `water_rare_thumbnail_1.png`, `water_epic_thumbnail_1.png`, `water_legend_thumbnail_1.png` |
+
 덤부 카드의 능력명:
 - NORMAL: **짝사랑의 용기**
 - RARE: **마음의 거리 좁히기**
 - EPIC: **사랑의 화해**
 - LEGEND: **사랑의 수호**
 
-두 사이트의 `const kmonCards` 목록에 16장이 등록되어 있다. 카드 상세 팝업은 기존 카드 데이터/표시 로직을 사용한다.
+두 사이트의 `const kmonCards` 목록에 20장이 등록되어 있다. 카드 상세 팝업은 기존 카드 데이터/표시 로직을 사용한다.
+
+물귀신 카드의 능력명:
+- NORMAL: **물의 보호**
+- RARE: **물의 안전**
+- EPIC: **물의 수호**
+- LEGEND: **수신의 가호**
 
 ## 6. KMON SIGNAL
 
 - 생년월일을 바탕으로 오늘 / 이번 주 / 이번 달 기간의 에너지와 어울리는 카드를 추천한다.
-- 16장의 카드는 두 사이트의 SIGNAL 추천 대상에 포함된다.
-- 덤부 4장의 에너지 매핑이 `signalCardEnergy`에 추가되어 있다.
+- 20장의 카드는 두 사이트의 SIGNAL 추천 대상에 포함된다.
+- 덤부 4장과 물귀신 4장의 에너지 매핑이 `signalCardEnergy`에 추가되어 있다.
 - **추천 기준은 등급 자체가 아니라 카드 능력과 에너지의 관련성**이라는 작업 원칙.
 - 하단 문구 (2026-11-15 반영):
   > 나만의 시그널을 발견하고, 나의 에너지와 어울리는 KMON 카드를 만나보세요. 생년월일은 저장하거나 전송하지 않습니다.
@@ -152,11 +160,13 @@
 ## 9. 최근 반영 완료
 
 - 덤부 카드 4장 공개 썸네일을 두 GitHub 저장소에 등록.
-- 두 사이트 카드 목록 12 → 16장, KMON SIGNAL 덤부 추천 매핑 추가.
+- 두 사이트 카드 목록 12 → 16장 → 20장, KMON SIGNAL 덤부·물귀신 추천 매핑 추가.
 - SIGNAL 하단 문구 '오늘의 에너지' → '나의 에너지' 변경.
 - 메인넷에 출석체크 버튼 및 시범 운영 출석 페이지 추가.
 - 메인넷 'Kmon의 세계' 버튼을 테스트넷과 동일한 'Kmon 탐험하기' 디자인으로 변경.
 - 코드 반영은 GitHub에서 확인했으며, 사용자도 사이트 적용을 확인했다고 답했다.
+
+- 물귀신 카드 4장(노말·레어·에픽·레전드)과 SIGNAL 추천을 두 사이트에 추가 (2026-11-16).
 
 ## 10. 새 대화에서 작업 시작 절차
 
