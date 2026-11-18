@@ -1208,7 +1208,7 @@ if (/Android/i.test(navigator.userAgent) &&
   <header class="kmon-collection-hero">
     <div class="label">KMON CARD COLLECTION</div>
     <h1>디지털 카드 컬렉션</h1>
-    <p><span class="kmon-rarity-normal">NORMAL</span><span class="kmon-rarity-rare">RARE</span><span class="kmon-rarity-epic">EPIC</span><span class="kmon-rarity-legend">LEGEND</span></p>
+    <p><span class="kmon-rarity-normal">NORMAL</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-rare">RARE</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-epic">EPIC</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-legend">LEGEND</span></p>
   </header>
   <div id="kmon-collection-cards"></div>
 </main>
@@ -2248,7 +2248,6 @@ function renderKmonCards(){
  const more=document.querySelector("#cards .more-monsters-button");if(more)more.textContent=ui.more;
  const homeTitle=document.querySelector("#cards .section-title");if(homeTitle)homeTitle.textContent=ui.homeTitle;
  const collectionTitle=document.querySelector("#card-collection-page h1");if(collectionTitle)collectionTitle.textContent=ui.collection;
- const orderLabel=document.querySelector("#card-collection-page .kmon-collection-hero > p");if(orderLabel&&orderLabel.firstChild)orderLabel.firstChild.textContent=ui.order;
  const home=document.getElementById("kmon-home-cards");const collection=document.getElementById("kmon-collection-cards");
  if(home){const byCharacter=new Map();kmonCards.forEach(card=>{if(!byCharacter.has(card.character))byCharacter.set(card.character,[]);byCharacter.get(card.character).push(card);});const characters=[...byCharacter.keys()];for(let i=characters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[characters[i],characters[j]]=[characters[j],characters[i]];}const chosen=characters.slice(0,4).map(character=>{const cards=byCharacter.get(character);return cards[Math.floor(Math.random()*cards.length)];});home.replaceChildren(...chosen.map(kmonCardNode));}
  if(collection){const groups=new Map();const sorted=[...kmonCards].sort((a,b)=>(kmonCharacterOrder.indexOf(a.character)-kmonCharacterOrder.indexOf(b.character))||(kmonRarityOrder[a.rarity]-kmonRarityOrder[b.rarity]));
