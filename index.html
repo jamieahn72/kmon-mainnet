@@ -2297,7 +2297,7 @@ if(kmonBuyButton)kmonBuyButton.addEventListener("click",async()=>{
    onReadyForServerCompletion:async(paymentId,txid)=>{
     await kmonPaymentRequest("/api/payments/complete",token,{paymentId,txid});
     paymentCompleted=true;
-    alert("결제가 완료되었습니다. 구매한 원본 카드는 내 카드에서 다운로드할 수 있습니다.");
+    alert("Pi 결제 완료가 서버에서 확인되었습니다. 원본 다운로드 화면은 아직 연결 작업 중입니다. 결제 ID를 보관하고 운영자에게 문의해 주세요: "+paymentId);
    },
    onCancel:()=>{console.info("Pi payment cancelled");},
    onError:(error)=>{console.error("Pi payment error",error);alert("결제 중 오류가 발생했습니다. 결제 내역을 확인한 후 다시 시도해 주세요.");}
