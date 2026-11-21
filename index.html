@@ -2308,7 +2308,7 @@ async function kmonPaymentRequest(path, token, data){
  if(!response.ok||result.success===false)throw new Error(result.error||"서버 결제 처리 실패 ("+response.status+")");
  return result;
 }
-const kmonOwnedTranslations={
+var kmonOwnedTranslations={
  ko:{title:"내가 구매한 Kmon 카드",description:"Pi 로그인 후 구매 완료된 카드의 원본 PNG를 다운로드할 수 있습니다.",refresh:"구매한 카드 확인",login:"먼저 Pi 로그인을 해주세요.",loading:"구매한 카드 목록을 확인하는 중입니다.",empty:"구매 완료된 카드가 없습니다.",none:"표시할 구매 카드가 없습니다.",download:"원본 PNG 다운로드",failure:"목록 조회 실패",unknown:"알 수 없는 오류",listError:"구매 목록을 확인할 수 없습니다."},
  en:{title:"My Purchased Kmon Cards",description:"Sign in with Pi to download the original PNG files of your purchased cards.",refresh:"View Purchased Cards",login:"Please sign in with Pi first.",loading:"Checking your purchased cards…",empty:"You haven't purchased any cards yet.",none:"No purchased cards to display.",download:"Download Original PNG",failure:"Failed to load cards",unknown:"Unknown error",listError:"Unable to retrieve purchased cards."},
  zh:{title:"我购买的 Kmon 卡片",description:"使用 Pi 登录后，可下载已购买卡片的原始 PNG 文件。",refresh:"查看已购卡片",login:"请先登录 Pi。",loading:"正在查询已购买的卡片…",empty:"尚无已购买的卡片。",none:"没有可显示的已购卡片。",download:"下载原始 PNG",failure:"卡片列表加载失败",unknown:"未知错误",listError:"无法查询已购卡片。"},
@@ -2317,6 +2317,7 @@ const kmonOwnedTranslations={
 };
 function kmonOwnedText(){return kmonOwnedTranslations[activeLanguage]||kmonOwnedTranslations.ko;}
 function updateKmonOwnedLanguage(){
+ if(!kmonOwnedTranslations)return;
  const t=kmonOwnedText();
  const title=document.getElementById("kmon-owned-title"),description=document.getElementById("kmon-owned-description"),refresh=document.getElementById("kmon-owned-refresh");
  if(title)title.textContent=t.title;
@@ -2328,6 +2329,7 @@ function updateKmonOwnedLanguage(){
   const button=row.querySelector("button");if(button)button.textContent=t.download;
  });
 }
+updateKmonOwnedLanguage();
 // Purchased cards are listed only after Pi token authentication and D1 ownership checks.
 async function kmonLoadOwnedCards(){
  const token=sessionStorage.getItem("pi_access_token");
