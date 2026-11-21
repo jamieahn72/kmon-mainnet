@@ -980,6 +980,27 @@ footer { padding:25px 20px; color:#9299ad; text-align:center; font-size:12px; }
 #card-collection-page .kmon-card-item h3{margin:12px 0 4px;color:#24334c;font-size:14px}
 @media(max-width:767px){#card-collection-page{padding:22px 12px 75px}#card-collection-page .kmon-collection-hero{padding:25px 18px 23px;border-radius:16px}#card-collection-page .kmon-collection-hero h1{margin:10px 0 16px}#card-collection-page .kmon-collection-hero>p{gap:6px;font-size:11px}#card-collection-page .kmon-collection-hero>p .kmon-rarity-normal,#card-collection-page .kmon-collection-hero>p .kmon-rarity-rare,#card-collection-page .kmon-collection-hero>p .kmon-rarity-epic,#card-collection-page .kmon-collection-hero>p .kmon-rarity-legend{font-size:10px;padding:5px 7px}#card-collection-page .kmon-collection-group{padding:18px 12px 22px;margin-top:16px;border-radius:14px}#card-collection-page .kmon-collection-group h2{font-size:18px;margin-bottom:16px;padding-bottom:12px}#card-collection-page .kmon-card-grid{gap:9px}#card-collection-page .kmon-card-item{padding:6px 6px 10px;border-radius:9px}#card-collection-page .kmon-card-item h3{font-size:11px}}
 
+/* Compact collection header: keep card artwork visible above the fold */
+#card-collection-page .kmon-collection-back{margin-bottom:12px}
+#card-collection-page .kmon-collection-hero{padding:22px 28px 20px}
+#card-collection-page .kmon-collection-hero h1{margin:7px 0 13px;font-size:clamp(25px,3.5vw,34px)}
+#card-collection-page .kmon-collection-hero>p{padding-top:12px;gap:6px}
+#card-collection-page #kmon-owned-cards{width:100%;max-width:none;margin:14px 0 0;padding:12px 0 0;border:0;border-top:1px solid #e5e9f0;border-radius:0;background:none;box-shadow:none}
+#card-collection-page #kmon-owned-title{font-size:clamp(15px,2vw,18px);margin:0 0 4px}
+#card-collection-page #kmon-owned-description{margin:0 0 9px;font-size:12px;line-height:1.45}
+#card-collection-page #kmon-owned-refresh{padding:7px 13px;font-size:12px}
+#card-collection-page #kmon-owned-list:empty{display:none}
+#card-collection-page .kmon-collection-group{margin-top:18px}
+@media(max-width:767px){
+ #card-collection-page .kmon-collection-back{margin-bottom:10px}
+ #card-collection-page .kmon-collection-hero{padding:18px 16px 17px}
+ #card-collection-page .kmon-collection-hero h1{margin:7px 0 11px;font-size:clamp(24px,6vw,30px)}
+ #card-collection-page .kmon-collection-hero>p{padding-top:10px;gap:5px}
+ #card-collection-page #kmon-owned-cards{margin:11px 0 0;padding:10px 0 0}
+ #card-collection-page #kmon-owned-description{font-size:11px}
+ #card-collection-page .kmon-collection-group{margin-top:13px}
+}
+
 /* Collection rarity badges: solid tier colors with white text */
 #card-collection-page .kmon-collection-hero>p .kmon-rarity-normal{background:#7A8493!important;border-color:#7A8493!important;color:#fff!important}
 #card-collection-page .kmon-collection-hero>p .kmon-rarity-rare{background:#2378C5!important;border-color:#2378C5!important;color:#fff!important}
@@ -1215,19 +1236,18 @@ if (/Android/i.test(navigator.userAgent) &&
 
 <!-- KMON 전체 디지털 카드 컬렉션 -->
 <main id="card-collection-page">
-<!-- Mainnet purchased-card download area -->
-<section id="kmon-owned-cards">
- <h2 id="kmon-owned-title">내가 구매한 Kmon 카드</h2>
- <p id="kmon-owned-description">Pi 로그인 후 구매 완료된 카드의 원본 PNG를 다운로드할 수 있습니다.</p>
- <button type="button" id="kmon-owned-refresh">구매한 카드 확인</button>
- <div id="kmon-owned-list" aria-live="polite" style="margin-top:12px"></div>
-</section>
-
   <a class="kmon-collection-back" href="#world">← 메인으로 돌아가기</a>
   <header class="kmon-collection-hero">
     <div class="label">KMON CARD COLLECTION</div>
     <h1>디지털 카드 컬렉션</h1>
     <p><span class="kmon-rarity-normal">NORMAL</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-rare">RARE</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-epic">EPIC</span><span class="kmon-order-arrow" aria-hidden="true">→</span><span class="kmon-rarity-legend">LEGEND</span></p>
+    <!-- Mainnet purchased-card download area -->
+    <section id="kmon-owned-cards">
+     <h2 id="kmon-owned-title">내가 구매한 Kmon 카드</h2>
+     <p id="kmon-owned-description">Pi 로그인 후 구매 완료된 카드의 원본 PNG를 다운로드할 수 있습니다.</p>
+     <button type="button" id="kmon-owned-refresh">구매한 카드 확인</button>
+     <div id="kmon-owned-list" aria-live="polite" style="margin-top:12px"></div>
+    </section>
   </header>
   <div id="kmon-collection-cards"></div>
 </main>
