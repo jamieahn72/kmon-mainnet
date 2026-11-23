@@ -2417,14 +2417,24 @@ if(kmonBuyButton)kmonBuyButton.addEventListener("click",async()=>{
  if(kmonPaymentBusy||!kmonSelectedCard)return;
  const card=kmonSelectedCard;
  const amount=KMON_PRICES[card.rarity];
- const token=sessionStorage.getItem("pi_access_token");
+ let token=sessionStorage.getItem("pi_access_token");
  if(!token){alert("먼저 Pi 로그인을 해주세요.");return;}
- if(!window.Pi||typeof window.Pi.createPayment!=="function"){alert("Pi Browser에서 접속해 주세요.");return;}
+ if(!window.Pi||typeof window.Pi.createPayment!=="function"||typeof window.Pi.authenticate!=="function"){alert("Pi Browser에서 접속해 주세요.");return;}
  if(!amount){alert("카드 가격을 확인할 수 없습니다.");return;}
  if(!confirm(card.character+" "+card.rarity+" 카드를 "+amount+" Pi에 구매하시겠습니까? 실제 Pi가 결제됩니다."))return;
  kmonPaymentBusy=true;kmonBuyButton.disabled=true;
  let paymentCompleted=false;
  try{
+  // Refresh the SDK authorization with payments scope before opening checkout.
+  // A restored username-only token must not be treated as payment authorization.
+  const paymentAuth=await window.Pi.authenticate(["username","payments"],(payment)=>{
+   console.warn("Pi 미완료 결제 확인:",payment?.identifier);
+  });
+  if(!paymentAuth?.accessToken||!paymentAuth?.user?.username)throw new Error("Pi 결제 권한 인증에 실패했습니다. 다시 로그인해 주세요.");
+  token=paymentAuth.accessToken;
+  sessionStorage.setItem("pi_access_token",token);
+  sessionStorage.setItem("pi_username",paymentAuth.user.username);
+  updatePiLoginButton(paymentAuth.user.username);
   await window.Pi.createPayment({
    amount,
    memo:"KMON "+card.id,
